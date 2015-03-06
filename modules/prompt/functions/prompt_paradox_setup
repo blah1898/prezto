@@ -53,7 +53,9 @@ function prompt_paradox_build_prompt {
   fi
 
   if [[ -n "$ruby_info" ]]; then
-    prompt_paradox_start_segment red black '${ruby_info}'
+    if [[ "$ruby_info" != "vsystem" ]]; then 
+      prompt_paradox_start_segment red black '${ruby_info}'
+    fi
   fi
 
   prompt_paradox_end_segment
@@ -152,7 +154,7 @@ function prompt_paradox_setup {
     'status' '%s%D%A%B%S%a%d%m%r%U%u'
 
   # Set ruby-info parameters.
-  zstyle ':prezto:module:ruby:info:version' format '%v'
+  zstyle ':prezto:module:ruby:info:version' format 'v%v'
   # Define prompts.
   PROMPT='
 ${(e)$(prompt_paradox_build_prompt)}
