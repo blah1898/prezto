@@ -55,6 +55,12 @@ function prompt_paradox_build_prompt {
     fi
   fi
 
+  if [[ -n "$node_info[version]" ]]; then
+    if [[ "$node_info" != "vsystem" ]]; then
+      prompt_paradox_start_segment cyan black '$node_info[version]'
+    fi
+  fi
+
   prompt_paradox_end_segment
 }
 
@@ -110,6 +116,7 @@ function prompt_paradox_precmd {
 
 function prompt_paradox_preexec {
   _prompt_paradox_start_time="$SECONDS"
+  node-info
 }
 
 function prompt_paradox_setup {
@@ -152,6 +159,9 @@ function prompt_paradox_setup {
 
   # Set ruby-info parameters.
   zstyle ':prezto:module:ruby:info:version' format 'v%v'
+
+  # Set node-info parameters
+  zstyle ':prezto:module:node:info:version' format 'v%v'
   # Define prompts.
   PROMPT='
 ${(e)$(prompt_paradox_build_prompt)}
