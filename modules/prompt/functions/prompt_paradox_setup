@@ -50,13 +50,13 @@ function prompt_paradox_build_prompt {
   fi
 
   if [[ -n "$ruby_info" ]]; then
-    if [[ "$ruby_info" != "vsystem" ]]; then 
+    if [[ "$ruby_info" != "rb:system" ]]; then 
       prompt_paradox_start_segment red black '${ruby_info}'
     fi
   fi
 
   if [[ -n "$node_info[version]" ]]; then
-    if [[ "$node_info" != "vsystem" ]]; then
+    if [[ "$node_info" != "node:system" ]]; then
       prompt_paradox_start_segment cyan black '$node_info[version]'
     fi
   fi
@@ -106,17 +106,21 @@ function prompt_paradox_precmd {
     git-info
   fi
 
+  # Get Ruby Info
   if (( $+functions[ruby-info] )); then
     ruby-info
   fi
 
+  # Get Node Info
+  if (( $+functions[node-info] )); then
+    node-info
+  fi
   # Calculate and print the elapsed time.
   prompt_paradox_print_elapsed_time
 }
 
 function prompt_paradox_preexec {
   _prompt_paradox_start_time="$SECONDS"
-  node-info
 }
 
 function prompt_paradox_setup {
@@ -158,10 +162,10 @@ function prompt_paradox_setup {
     'status' '%s%D%A%B%S%a%d%m%r%U%u'
 
   # Set ruby-info parameters.
-  zstyle ':prezto:module:ruby:info:version' format 'v%v'
+  zstyle ':prezto:module:ruby:info:version' format 'rb:%v'
 
   # Set node-info parameters
-  zstyle ':prezto:module:node:info:version' format 'v%v'
+  zstyle ':prezto:module:node:info:version' format 'node:%v'
   # Define prompts.
   PROMPT='
 ${(e)$(prompt_paradox_build_prompt)}
