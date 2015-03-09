@@ -32,7 +32,6 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
-  'prompt' \
   'git' \
   'node' \
   'pacman' \
@@ -40,6 +39,7 @@ zstyle ':prezto:load' pmodule \
   'rails' \
   'ruby' \
   'syntax-highlighting' \
+  'prompt' \
 
 #
 # Editor

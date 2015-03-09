@@ -35,7 +35,7 @@ fi
 #
 
 # Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath mailpath path
+# typeset -U cdpath fpath mailpath path
 
 # Set the the list of directories that cd searches.
 # cdpath=(
@@ -43,11 +43,11 @@ typeset -gU cdpath fpath mailpath path
 # )
 
 # Set the list of directories that Zsh searches for programs.
-path=(
-  /usr/local/{bin,sbin}
-  $path
-)
-
+# path=(
+#    /usr/local/{bin,sbin}
+#    $path
+#  )
+#  
 #
 # Less
 #
@@ -76,3 +76,6 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+export NVM_DIR="/home/bruce/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
