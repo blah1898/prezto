@@ -61,6 +61,12 @@ function prompt_paradox_build_prompt {
     fi
   fi
 
+  if [[ -n "$python_info[virtualenv]" ]]; then
+    if [[ "$python_info[virtualenv]" != "py:system" ]]; then 
+      prompt_paradox_start_segment red black '$python_info[virtualenv]'
+    fi
+  fi
+
   prompt_paradox_end_segment
 }
 
@@ -115,6 +121,10 @@ function prompt_paradox_precmd {
   if (( $+functions[node-info] )); then
     node-info
   fi
+  # Get Python Info
+  if (( $+functions[node-info] )); then
+    node-info
+  fi
   # Calculate and print the elapsed time.
   prompt_paradox_print_elapsed_time
 }
@@ -164,8 +174,13 @@ function prompt_paradox_setup {
   # Set ruby-info parameters.
   zstyle ':prezto:module:ruby:info:version' format 'rb:%v'
 
-  # Set node-info parameters
+  # Set node-info parameters.
   zstyle ':prezto:module:node:info:version' format 'node:%v'
+  
+  # Set python-info parameters.
+  zstyle ':prezto:module:python:info:version' format 'py:%v'
+
+  # Set python-info parameters
   # Define prompts.
   PROMPT='
 ${(e)$(prompt_paradox_build_prompt)}
