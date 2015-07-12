@@ -74,6 +74,9 @@ fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
 
+# custom path
+export PATH="$HOME/.bin:$PATH"
+
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
