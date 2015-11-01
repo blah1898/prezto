@@ -9,16 +9,17 @@
 # Browser
 #
 
-if [[ "$OSTYPE" == darwin* ]]; then
-  export BROWSER='open'
-fi
+# if [[ "$OSTYPE" == darwin* ]]; then
+#   export BROWSER='open'
+# fi
 
 #
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
+export BROWSER='firefox'
+export EDITOR='vim'
+export VISUAL='vim'
 export PAGER='less'
 
 #
@@ -34,7 +35,7 @@ fi
 #
 
 # Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath mailpath path
+# typeset -U cdpath fpath mailpath path
 
 # Set the the list of directories that cd searches.
 # cdpath=(
@@ -42,11 +43,11 @@ typeset -gU cdpath fpath mailpath path
 # )
 
 # Set the list of directories that Zsh searches for programs.
-path=(
-  /usr/local/{bin,sbin}
-  $path
-)
-
+# path=(
+#    /usr/local/{bin,sbin}
+#    $path
+#  )
+#  
 #
 # Less
 #
@@ -72,3 +73,21 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+# custom path
+export PATH="$HOME/.bin:$PATH"
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# nvm
+export NVM_DIR="/home/bruce/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+
+# ssh-agent
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"

@@ -10,4 +10,33 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+stty -ixon
+
+# LS_COLORS for termite
+eval $(dircolors ~/.dircolors)
+
+# Tmux
+if [[ -z "$TMUX" ]] ;then
+    ID="`tmux ls | grep -vm1 attached | cut -d: -f1`" # get the id of a deattached session
+    if [[ -z "$ID" ]] ;then # if not available create a new one
+        exec tmux new-session
+    else
+        exec tmux attach-session -t "$ID" # if available attach to it
+    fi
+fi
+
+# if [ -z "$KEYADD" ] && ssh-add ~/.ssh/id_rsa &> /dev/null; then
+#     export KEYADD=true
+# fi
+
+# custom functions
+# deleteSomething() {
+#     mv "$@" ~/.local/trash
+# }
+
+# fun aliases
+#alias rm=deleteSomething
+#alias kiwf="/bin/rm"
+alias maek=make
+alias c=clear
+alias vless=/usr/share/vim/vim74/macros/less.sh
