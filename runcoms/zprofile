@@ -17,7 +17,7 @@
 # Editors
 #
 
-export BROWSER='chromium'
+export BROWSER='firefox'
 export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
@@ -88,3 +88,6 @@ export NVM_DIR="/home/bruce/.nvm"
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
+
+# ssh-agent
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
